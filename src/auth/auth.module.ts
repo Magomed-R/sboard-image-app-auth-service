@@ -3,7 +3,7 @@ import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
 import { authProviders } from './auth.providers'
 import { JwtModule } from '@nestjs/jwt'
-import { jwtSecret } from 'src/constants'
+import { JWT_SECRET } from 'src/constants'
 import { DatabaseModule } from 'src/database/database.module'
 
 @Module({
@@ -11,7 +11,7 @@ import { DatabaseModule } from 'src/database/database.module'
     DatabaseModule,
     JwtModule.register({
       global: true,
-      secret: jwtSecret
+      secret: JWT_SECRET
     })
   ],
   controllers: [AuthController],

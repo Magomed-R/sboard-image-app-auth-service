@@ -1,0 +1,25 @@
+services:
+  service:
+    container_name: sboard-img-app-auth_service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 5491:${PORT:-5491}
+    networks:
+      - auth-service_network
+    depends_on:
+      - service_db
+  service_db:
+    container_name: sboard-img-app-auth_service-db
+    image: postgres:17
+    env_file: .env
+    ports:
+      - 127.0.0.1:5432:${POSTGRES_PORT:-5432}
+    networks:
+      - auth-service_network
+
+networks:
+  auth-service_network:
+    external: true

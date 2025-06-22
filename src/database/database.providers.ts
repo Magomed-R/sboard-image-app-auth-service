@@ -15,7 +15,7 @@ export const databaseProviders = [
         username: POSTGRES_USER,
         password: POSTGRES_PASSWORD,
         database: POSTGRES_DB,
-        entities: [join(process.cwd(), '**/*.entity{.ts,.js}')],
+        entities: [join(__dirname, '..', '**', '*.entity.{js,ts}')],
         synchronize: true
       })
 

@@ -1,16 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
-@Entity()
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column('varchar')
+  @Column('text')
   email: string
 
-  @Column('varchar')
+  @Column('text')
   password: string
 
-  @Column('timestamp', { generated: true, name: 'created_at' })
-  createdAt: string
+  @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP', name: 'created_at' })
+  createdAt: Date
 }
