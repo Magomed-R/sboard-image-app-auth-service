@@ -5,7 +5,7 @@ package auth;
 service AuthService {
   rpc Login (LoginDto) returns (UserAndToken) {}
   rpc Signup (SignupDto) returns (UserAndToken) {}
-  rpc Verify (VerifyDto) returns (User) {}
+  rpc Verify (VerifyDto) returns (VerifyResponse) {}
 }
 
 message LoginDto {
@@ -30,4 +30,8 @@ message UserAndToken {
 message User {
   optional string id = 1;
   string email = 2;
+}
+
+message VerifyResponse {
+  User user = 1;
 }
