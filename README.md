@@ -4,7 +4,7 @@
 
 ## Описание
 
-Это микросервис ауентификации для приложения <a href="https://github.com/Magomed-R/sboard-image-app-product">sboard-image-processor</a>
+Это микросервис ауентификации для приложения <a href="https://github.com/Magomed-R/sboard-image-app-product">sboard-image-app</a>
 
 ## Запуск (docker)
 
