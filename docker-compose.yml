@@ -1,6 +1,6 @@
 services:
   service:
-    container_name: sboard-img-app-auth_service
+    container_name: auth_service
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
     depends_on:
       - service_db
   service_db:
-    container_name: sboard-img-app-auth_service-db
+    container_name: auth_service-db
     image: postgres:17
     env_file: .env
     ports:
