@@ -1,6 +1,6 @@
 services:
   service:
-    container_name: auth_service
+    container_name: auth-service
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,13 +12,19 @@ services:
     depends_on:
       - service_db
   service_db:
-    container_name: auth_service-db
+    container_name: auth-service_db
     image: postgres:17
     env_file: .env
     ports:
       - 127.0.0.1:5432:${POSTGRES_PORT:-5432}
+    volumes:
+      - auth-service_db:/var/lib/postgresql/data
     networks:
       - auth-service_network
+
+volumes:
+  auth-service_db:
+    external: true
 
 networks:
   auth-service_network:

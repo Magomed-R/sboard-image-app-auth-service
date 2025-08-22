@@ -43,8 +43,6 @@ export class AuthService {
   async signup({ email, password }: SignupDto) {
     const user = await this.userRepository.findOneBy({ email })
 
-    console.log(user)
-
     if (user) throw new RpcException({ message: 'EMAIL_ALREADY_USED', code: grpc.status.ALREADY_EXISTS })
 
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -69,7 +67,9 @@ export class AuthService {
   }
 
   async verify({ accessToken }: VerifyDto) {
-    const { email, password } = await this.jwtService.verifyAsync<JwtPayload>(accessToken)
+    const { email, password } = await this.jwtService.verifyAsync<JwtPayload>(accessToken).catch(() => {
+      throw new RpcException({ message: 'INVALID_BEARER_TOKEN', code: grpc.status.INVALID_ARGUMENT })
+    })
 
     const user = await this.userRepository.findOneBy({ email })
 
